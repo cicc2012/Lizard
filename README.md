@@ -56,9 +56,9 @@
 
 ## Overview: Detection and Identification Workflow
 
-To distinguish individual lizards, we follow a two-step workflow:
+To distinguish individual lizards, we follow a two-phase workflow:
 
-### Step 1: Detecting the Presence of a Lizard
+### Phase 1: Detecting the Presence of a Lizard
 Before identifying an individual, the system must first detect whether a lizard is present in the image. This involves:
 1. **Object Detection**:
    - Use models like YOLO, Faster R-CNN, or SSD to locate lizards in the image.
@@ -68,7 +68,7 @@ Before identifying an individual, the system must first detect whether a lizard 
    - Crop the detected region (bounding box) to focus on the lizard.
    - This ensures the identification step works only on the relevant part of the image.
 
-### Step 2: Identifying the Individual
+### Phase 2: Identifying the Individual
 Once a lizard is detected, the cropped image is passed to a classification model to identify the individual. This involves:
 1. **Feature Extraction**:
    - Use a pre-trained model (e.g., MobileNetV2 or ResNet) to extract features from the cropped image.
