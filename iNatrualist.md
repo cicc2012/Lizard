@@ -51,7 +51,9 @@ iNaturalist offers a public **API** that you can use to:
        params['page'] += 1
    ```
 
+> A more complete example can be found at [fetch.py](fetch.py).
 > You can filter by user, location, date, or taxon using parameters listed in [iNaturalist API docs](https://api.inaturalist.org/v1/docs).
+> Here we used Get observations. The response and parameters can be found at the [iNaturalist API docs for "get observations"](https://api.inaturalist.org/v1/docs/#!/Observations/get_observations).
 
 **!Attention!**: "Please note that we throttle API usage to a max of 100 requests per minute, though we ask that you try to keep it to 60 requests per minute or lower, and to keep under 10,000 requests per day. If we notice usage that has serious impact on our performance we may institute blocks without notification."
 
