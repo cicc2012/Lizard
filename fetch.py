@@ -10,14 +10,19 @@ from openpyxl import Workbook, load_workbook
 # TODO: Change this to your desired taxon name
 # For example, to search for "Prairie Lizard", you can use the following parameters
 params = {
-    'taxon_name': 'Prairie Lizard',
+    'taxon_name': 'Crotaphytus',
     'per_page': 10, # Number of results to return in a page. Max is 200.
     'page': 1
 }
 
+# TODO: Change this to your desired limits
+PAGE_LIMIT = 4
+COUNT_LIMIT = 800 
+skip_count = 0  # Skip the first N images: used to extend the previous dataset
+
 # Specify the directory to save images
 # TODO: Change this to your desired directory
-save_directory = "E:/Lizard/images"
+save_directory = "E:/Lizard/images/" + params['taxon_name']
 os.makedirs(save_directory, exist_ok=True)
 
 # File to log image filenames, URLs, and times taken
@@ -43,7 +48,8 @@ else:
 image_count = 0
 start_time_global = time.time()
 
-while params['page'] <= 4 and image_count <= 60:  # Limit to 4 pages for demonstration
+# while params['page'] <= 4 and image_count <= 60:  # Limit to 4 pages for demonstration
+while image_count <= COUNT_LIMIT:  # Limit to 4 pages for demonstration
     # try to keep it to 60 requests per minute or lower, and to keep under 10,000 requests per day
 
     response = requests.get('https://api.inaturalist.org/v1/observations', params=params)
@@ -64,6 +70,11 @@ while params['page'] <= 4 and image_count <= 60:  # Limit to 4 pages for demonst
                 print(f"File {img_filename} already exists. Skipping download.")
                 time.sleep(1)  # Wait for 1 second before checking the next image
                 continue  # Skip downloading if the file already exists
+
+            if image_count < skip_count:
+                # print(f"Skipping {img_filename} as it is below the skip count threshold.")
+                continue
+
             with open(img_filename, 'wb') as f:
                 f.write(img_data)
 
@@ -84,7 +95,7 @@ while params['page'] <= 4 and image_count <= 60:  # Limit to 4 pages for demonst
 
             # Wait for 1 second before downloading the next image
             # Ensure you don't hit the API too hard: less than 60 requests per minute
-            sleep_time = max(0, 1 - time_used_ms / 1000)  # Ensure non-negative sleep time
+            sleep_time = max(0, 1.1 - time_used_ms / 1000)  # Ensure non-negative sleep time
             time.sleep(sleep_time)
 
     params['page'] += 1
