@@ -17,8 +17,8 @@ params = {
 
 # TODO: Change this to your desired limits
 PAGE_LIMIT = 4
-COUNT_LIMIT = 800 
-skip_count = 0  # Skip the first N images: used to extend the previous dataset
+COUNT_LIMIT = 500 
+skip_count = 800  # Skip the first N images: used to extend the previous dataset
 
 # Specify the directory to save images
 # TODO: Change this to your desired directory
