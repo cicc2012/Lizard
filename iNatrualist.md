@@ -15,7 +15,7 @@ iNaturalist offers a public **API** that you can use to:
 1. **Install dependencies:**
 
    ```bash
-   pip install requests
+   python -m pip install requests
    ```
 
 2. **Python script example:**
