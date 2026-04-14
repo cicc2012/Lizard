@@ -16,6 +16,7 @@ iNaturalist offers a public **API** that you can use to:
 
    ```bash
    python -m pip install requests
+   python -m pip install openpyxl
    ```
 
 2. **Python script example:**
